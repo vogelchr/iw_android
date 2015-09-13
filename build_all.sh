@@ -45,5 +45,9 @@ if ! [ -f "${iw_dir}/iw" ] ; then
 	fi
 	export PKG_CONFIG_PATH="${prefix}/lib/pkgconfig"
 	../android_buildenv.sh make V=1
+	cp iw iw.stripped
+	../android_buildenv.sh sh -c "\${CROSS_COMPILE}strip -s iw.stripped"
     )
 fi
+
+echo "*** Iw has been compiled, output files are iw and iw.stripped in $iw_dir"
