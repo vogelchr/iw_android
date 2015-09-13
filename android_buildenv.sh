@@ -8,13 +8,10 @@ CC="${CROSS_COMPILE}gcc"
 CXX="${CROSS_COMPILE}g++"
 LD="${CROSS_COMPILE}ld"
 
-LIBNL="/home/chris/iw_android/prefix/lib"
-INCNL="/home/chris/iw_android/prefix/include/libnl3"
-
 CFLAGS="-Os -ggdb -fPIE --sysroot=$SYSROOT"
 CXXFLAGS="$CFLAGS"
-CPPFLAGS="--sysroot=$SYSROOT -I$INCNL"
-LDFLAGS="--sysroot=$SYSROOT -L$LIBNL -pie"
+CPPFLAGS="--sysroot=$SYSROOT"
+LDFLAGS="--sysroot=$SYSROOT -pie"
 
 export CC CXX LD CPPFLAGS CFLAGS CXXFLAGS LDFLAGS
 exec "$@"

@@ -36,9 +36,14 @@ if ! [ -f "${prefix}/lib/libnl-3.a" ] ; then
     )
 fi
 
-(
+if ! [ -f "${iw_dir}/iw" ] ; then
+    (
 	cd "$iw_dir"
-	patch <../diff_iw41_Makefile_libm.patch
-	export PKG_CONFIG_PATH=${prefix/lib/pkgconfig}
+	if ! [ -f ".patch.applied" ] ; then
+		patch <../diff_iw41_Makefile_libm.patch
+		touch ".patch.applied"
+	fi
+	export PKG_CONFIG_PATH="${prefix}/lib/pkgconfig"
 	../android_buildenv.sh make V=1
-)
+    )
+fi
